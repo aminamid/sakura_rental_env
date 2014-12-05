@@ -60,3 +60,62 @@ EXCL
 git config user.name "username"
 git config user.email username@example.con
 ```
+
+# get ports
+
+mkdir -p $HOME/usr/local/{etc,lib,tmp/dist,tmp/work,var/db/pkg}
+mkdir -p $HOME/usr/local/ports
+cd $HOME/usr
+fetch ftp://ftp.jp.freebsd.org/pub/FreeBSD/ports/ports/ports.tar.gz
+tar xzf ports.tar.gz
+cd $HOME/usr/ports
+fetch http://www.FreeBSD.org/ports/INDEX-9.bz2
+bunzip2 INDEX-9.bz2
+
+# bash_profile
+
+export INSTALL_AS_USER=yes
+export PREFIX=${HOME}/usr/local
+export LOCALBASE=${HOME}/usr/local
+export PKG_DBDIR=${LOCALBASE}/var/db/pkg
+export PORT_DBDIR=${LOCALBASE}/var/db/pkg
+export DISTDIR=${LOCALBASE}/tmp/dist
+export WRKDIRPREFIX=${LOCALBASE}/tmp/work
+export PORTSDIR=${HOME}/usr/ports
+export PKGTOOLS_CONF=${LOCALBASE}/etc/pkgtools.conf
+export DEPENDS_TARGET='install clean'
+
+
+# make ld-elf.so.conf
+
+% ldconfig -r | awk '/search/ {print $3}' | tr ":" "\n" > ~/usr/local/etc/ld-elf.so.conf
+% echo ${HOME}/usr/local/lib >> ~/usr/local/etc/ld-elf.so.conf
+
+# bash_profile
+
+export LDCONFIG="/sbin/ldconfig -f ${LOCALBASE}/var/run/ld-elf.so.hints -i -R ${LOCALBASE}/etc/ld-elf.so.conf"
+export LD_LIBRARY_PATH=${LOCALBASE}/lib
+export LD_RUN_PATH=${LOCALBASE}/lib
+export PATH=${PATH}:${LOCALBASE}/bin:${LOCALBASE}/sbin
+export MANPATH_MAP=${LOCALBASE}/bin ${LOCALBASE}/man
+
+# install node
+
+```
+cd $HOME/usr/ports/lang/python
+make install clean
+```
+
+work around for make cannot find python-path
+
+```
+mkdir $HOME$HOME
+cd $HOME$HOME
+ln -s $HOME/usr
+```
+
+```
+cd $HOME/usr/ports/www/node
+make install clean
+```
+
