@@ -18,14 +18,6 @@ export SRCCONF=$HOME/usr/local/etc/src.conf
 export MAKE_JOBS_UNSAFE=yes
 
 cd ${HOME}/usr/ports/lang/python
-make install
-
-mkdir -p ${HOME}${HOME}
-ln -sf ${HOME}/usr ${HOME}${HOME}/usr
-
+make clean
 cd ${HOME}/usr/ports/www/node
-make install
-
-cd ${HOME}/usr/ports/www/npm
-make install
-
+make clean

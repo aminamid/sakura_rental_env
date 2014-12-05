@@ -9,5 +9,5 @@ export PORTSDIR=${HOME}/usr/ports
 export PKGTOOLS_CONF=${LOCALBASE}/etc/pkgtools.conf
 export DEPENDS_TARGET='install clean'
 
-ldconfig -r | awk '/search/ {print $3}' | tr ":" "\n" > ${HOME}/usr/local/etc/ld-elf.so.conf
-echo ${HOME}/usr/local/lib >> ${HOME}/usr/local/etc/ld-elf.so.conf
+ldconfig -r | awk '/search/ {print $3}' | tr ":" "\n" > ${LOCALBASE}/etc/ld-elf.so.conf
+echo ${LOCALBASE}/lib >> ${LOCALBASE}/etc/ld-elf.so.conf

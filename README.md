@@ -48,11 +48,9 @@ cat <<EXCL >> ~/.gitignore_global
 .direnv
 .envrc
 # Editor files #
-################
 *~
 *.swp
 *.swo
-virtualenv
 EXCL
 ```
 
@@ -97,7 +95,7 @@ export LDCONFIG="/sbin/ldconfig -f ${LOCALBASE}/var/run/ld-elf.so.hints -i -R ${
 export LD_LIBRARY_PATH=${LOCALBASE}/lib
 export LD_RUN_PATH=${LOCALBASE}/lib
 export PATH=${PATH}:${LOCALBASE}/bin:${LOCALBASE}/sbin
-export MANPATH_MAP=${LOCALBASE}/bin ${LOCALBASE}/man
+export MANPATH_MAP=${LOCALBASE}/man
 
 # install node
 
@@ -109,7 +107,7 @@ make install clean
 work around for make cannot find python-path
 
 ```
-mkdir $HOME$HOME
+mkdir -p $HOME$HOME
 cd $HOME$HOME
 ln -s $HOME/usr
 ```
@@ -118,4 +116,3 @@ ln -s $HOME/usr
 cd $HOME/usr/ports/www/node
 make install clean
 ```
-
