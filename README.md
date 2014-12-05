@@ -84,7 +84,7 @@ export WRKDIRPREFIX=${LOCALBASE}/tmp/work
 export PORTSDIR=${HOME}/usr/ports
 export PKGTOOLS_CONF=${LOCALBASE}/etc/pkgtools.conf
 export DEPENDS_TARGET='install clean'
-
+export MAKE_JOBS_UNSAFE=yes
 
 # make ld-elf.so.conf
 
