@@ -1,11 +1,11 @@
 export OSNAME=$(tr '[A-Z]' '[a-z]' <<< $(uname -s))
-export ARCHNAME=$(tr '[A-Z]' '[a-z]' <<< $(uname -m))
+export ARCHNAME='amd64'
 
-export GOFILENAME=go1.3.3.$OSNAME-$ARCHNAME.tar.gz
-export GOURL=https://storage.googleapis.com/golang
+export FILENAME=go1.4.$OSNAME-$ARCHNAME.tar.gz
+export URL=http://golang.org/dl/
 
-mkdir -p $HOME/.local/{src,bin}
-cd $HOME/.local/src
-wget --no-check-certificate $GOURL/$GOFILENAME
-tar xfz $GOFILENAME
-mv go ~/.local/
+mkdir -p $HOME/$DOTLOCAL/{src,bin}
+cd $HOME/$DOTLOCAL/src
+wget --no-check-certificate $URL/$FILENAME
+tar xfz $FILENAME
+mv go ~/$DOTLOCAL/

@@ -1,7 +1,7 @@
-export GOROOT=$HOME/.local/go
+export GOROOT=$HOME/$DOTLOCAL/go
 export PATH=$PATH:$GOROOT/bin
 
-cd $HOME/.local/src
+cd $HOME/$DOTLOCAL/src
 git clone https://github.com/zimbatm/direnv.git
 cd direnv
-DESTDIR=$HOME/.local make install
+DESTDIR=$HOME/$DOTLOCAL make install

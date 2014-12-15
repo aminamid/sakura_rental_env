@@ -1,4 +1,24 @@
 ```
+. 00_local
+./01_go.sh
+./02_direnv.sh
+./03_virtualenv.sh
+./04_gitignore_global.sh
+cat bash_profile_go >> ~/.bash_profile
+```
+
+```
+10_ports.sh
+11_ldconfig.sh
+12_nodejs.sh
+13_clean.sh
+README.md
+bash_profile_go
+bash_profile_ports
+envrc_git
+envrc_python
+```
+```
 python -c 'import site,os; os.makedirs(site.USER_SITE)'
 mkdir -p $HOME/.local/{src,bin}
 
