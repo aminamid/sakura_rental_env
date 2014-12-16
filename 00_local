@@ -1,1 +1,1 @@
-export DOTLOCAL='.local'
+export DOTLOCAL='local'

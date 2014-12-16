@@ -6,6 +6,5 @@ export URL=http://golang.org/dl/
 
 mkdir -p $HOME/$DOTLOCAL/{src,bin}
 cd $HOME/$DOTLOCAL/src
-wget --no-check-certificate $URL/$FILENAME
-tar xfz $FILENAME
+curl -L $URL/$FILENAME | tar xfz -
 mv go ~/$DOTLOCAL/
