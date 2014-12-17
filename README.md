@@ -81,8 +81,8 @@ git config user.email username@example.con
 
 # get ports
 
-mkdir -p $HOME/usr/local/{etc,lib,tmp/dist,tmp/work,var/db/pkg}
-mkdir -p $HOME/usr/local/ports
+mkdir -p $HOME$USRLOCAL_MINE/{etc,lib,tmp/dist,tmp/work,var/db/pkg}
+mkdir -p $HOME$USRLOCAL_MINE/ports
 cd $HOME/usr
 fetch ftp://ftp.jp.freebsd.org/pub/FreeBSD/ports/ports/ports.tar.gz
 tar xzf ports.tar.gz
@@ -93,8 +93,8 @@ bunzip2 INDEX-9.bz2
 # bash_profile
 
 export INSTALL_AS_USER=yes
-export PREFIX=${HOME}/usr/local
-export LOCALBASE=${HOME}/usr/local
+export PREFIX=${HOME}$USRLOCAL_MINE
+export LOCALBASE=${HOME}$USRLOCAL_MINE
 export PKG_DBDIR=${LOCALBASE}/var/db/pkg
 export PORT_DBDIR=${LOCALBASE}/var/db/pkg
 export DISTDIR=${LOCALBASE}/tmp/dist
@@ -106,8 +106,8 @@ export MAKE_JOBS_UNSAFE=yes
 
 # make ld-elf.so.conf
 
-% ldconfig -r | awk '/search/ {print $3}' | tr ":" "\n" > ~/usr/local/etc/ld-elf.so.conf
-% echo ${HOME}/usr/local/lib >> ~/usr/local/etc/ld-elf.so.conf
+% ldconfig -r | awk '/search/ {print $3}' | tr ":" "\n" > ~$USRLOCAL_MINE/etc/ld-elf.so.conf
+% echo ${HOME}$USRLOCAL_MINE/lib >> ~$USRLOCAL_MINE/etc/ld-elf.so.conf
 
 # bash_profile
 

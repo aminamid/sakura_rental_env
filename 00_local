@@ -1,1 +1,2 @@
-export DOTLOCAL='local'
+export LOCALDIR_MINE='local'
+export USRLOCAL_MINE='usr/local'

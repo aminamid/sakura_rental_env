@@ -1,6 +1,6 @@
 export INSTALL_AS_USER=yes
-export PREFIX=${HOME}/usr/local
-export LOCALBASE=${HOME}/usr/local
+export PREFIX=${HOME}$USRLOCAL_MINE
+export LOCALBASE=${HOME}$USRLOCAL_MINE
 export PKG_DBDIR=${LOCALBASE}/var/db/pkg
 export PORT_DBDIR=${LOCALBASE}/var/db/pkg
 export DISTDIR=${LOCALBASE}/tmp/dist
@@ -14,7 +14,7 @@ export LD_LIBRARY_PATH=${LOCALBASE}/lib
 export LD_RUN_PATH=${LOCALBASE}/lib
 export PATH=${PATH}:${LOCALBASE}/bin:${LOCALBASE}/sbin
 export MANPATH_MAP=${LOCALBASE}/man
-export SRCCONF=$HOME/usr/local/etc/src.conf
+export SRCCONF=$HOME$USRLOCAL_MINE/etc/src.conf
 export MAKE_JOBS_UNSAFE=yes
 
 cd ${HOME}/usr/ports/lang/python
