@@ -1,138 +1,37 @@
+## Install golang
+
+
 ```
 . 00_local
 ./01_go.sh
 ./02_direnv.sh
 ./03_virtualenv.sh
 ./04_gitignore_global.sh
-cat bash_profile_go >> ~/.bash_profile
 ```
 
-```
-10_ports.sh
-11_ldconfig.sh
-12_nodejs.sh
-13_clean.sh
-README.md
-bash_profile_go
-bash_profile_ports
-envrc_git
-envrc_python
-```
-```
-python -c 'import site,os; os.makedirs(site.USER_SITE)'
-mkdir -p $HOME/.local/{src,bin}
+## Install tmux
 
-
-export PATH=$PATH:$HOME/.local/bin
-
-
-cd $HOME/.local/src
-wget --no-check-certificate https://storage.googleapis.com/golang/go1.3.3.freebsd-amd64.tar.gz
-tar xfz go1.3.3.freebsd-amd64.tar.gz
-mv go ~/.local/
-export GOROOT=$HOME/.local/go
-export PATH=$PATH:$GOROOT/bin
-
-cd $HOME/.local/src
-git clone https://github.com/zimbatm/direnv.git
-cd direnv
-DESTDIR=$HOME/.local make install
-```
-
-```bash:.bash_profile
-eval "$(direnv hook bash)"
-```
 
 ```
-cd $HOME/.local/src
-wget --no-check-certificate  https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.11.6.tar.gz
-tar xfz virtualenv-1.11.6.tar.gz
-cd virtualenv-1.11.6
-python setup.py build
-mv build/lib/* $HOME/.local/bin
-chmod +x $HOME/.local/bin/virtualenv.py
+. 10_local
+20_tmux.sh
 ```
 
-```.envrc
-if ! [ -d .direnv/virtualenv ]; then
-  virtualenv.py --no-site-packages --distribute .direnv/virtualenv
-  virtualenv.py --relocatable .direnv/virtualenv
-fi
-. .direnv/virtualenv/bin/activate
-```
+## Install ports and nodejs,npm
 
-```.envrc
-git config --global core.excludesfile "~/.gitignore_global"
-cat <<EXCL >> ~/.gitignore_global
-# Direnv stuff
-.direnv
-.envrc
-# Editor files #
-*~
-*.swp
-*.swo
-EXCL
-```
 
 ```
-git config user.name "username"
-git config user.email username@example.con
+. 10_local
+./11_ports.sh
+./12_ldconfig.sh
+./13_nodejs.sh
+./14_clean.sh
 ```
 
-# get ports
+## sample configs
 
-mkdir -p $HOME$USRLOCAL_MINE/{etc,lib,tmp/dist,tmp/work,var/db/pkg}
-mkdir -p $HOME$USRLOCAL_MINE/ports
-cd $HOME/usr
-fetch ftp://ftp.jp.freebsd.org/pub/FreeBSD/ports/ports/ports.tar.gz
-tar xzf ports.tar.gz
-cd $HOME/usr/ports
-fetch http://www.FreeBSD.org/ports/INDEX-9.bz2
-bunzip2 INDEX-9.bz2
-
-# bash_profile
-
-export INSTALL_AS_USER=yes
-export PREFIX=${HOME}$USRLOCAL_MINE
-export LOCALBASE=${HOME}$USRLOCAL_MINE
-export PKG_DBDIR=${LOCALBASE}/var/db/pkg
-export PORT_DBDIR=${LOCALBASE}/var/db/pkg
-export DISTDIR=${LOCALBASE}/tmp/dist
-export WRKDIRPREFIX=${LOCALBASE}/tmp/work
-export PORTSDIR=${HOME}/usr/ports
-export PKGTOOLS_CONF=${LOCALBASE}/etc/pkgtools.conf
-export DEPENDS_TARGET='install clean'
-export MAKE_JOBS_UNSAFE=yes
-
-# make ld-elf.so.conf
-
-% ldconfig -r | awk '/search/ {print $3}' | tr ":" "\n" > ~$USRLOCAL_MINE/etc/ld-elf.so.conf
-% echo ${HOME}$USRLOCAL_MINE/lib >> ~$USRLOCAL_MINE/etc/ld-elf.so.conf
-
-# bash_profile
-
-export LDCONFIG="/sbin/ldconfig -f ${LOCALBASE}/var/run/ld-elf.so.hints -i -R ${LOCALBASE}/etc/ld-elf.so.conf"
-export LD_LIBRARY_PATH=${LOCALBASE}/lib
-export LD_RUN_PATH=${LOCALBASE}/lib
-export PATH=${PATH}:${LOCALBASE}/bin:${LOCALBASE}/sbin
-export MANPATH_MAP=${LOCALBASE}/man
-
-# install node
-
-```
-cd $HOME/usr/ports/lang/python
-make install clean
-```
-
-work around for make cannot find python-path
-
-```
-mkdir -p $HOME$HOME
-cd $HOME$HOME
-ln -s $HOME/usr
-```
-
-```
-cd $HOME/usr/ports/www/node
-make install clean
-```
+* bash_profile_go
+* bash_profile_ports
+* envrc_git
+* envrc_python
+* tmux.conf
